@@ -13,8 +13,8 @@ mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/OPENTRONdb')
 
 //bodyparser setup
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}))
+app.use(bodyParser.json({limit: '50mb', extended: true}))
 
 //router setup
 scantronRoutes(app)

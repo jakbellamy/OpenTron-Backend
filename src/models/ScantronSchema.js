@@ -3,6 +3,6 @@ const Schema = mongoose.Schema
 
 export const ScantronSchema = new Schema({
     img: {
-        type: String
+        data: Buffer, contentType: String
     }
 })

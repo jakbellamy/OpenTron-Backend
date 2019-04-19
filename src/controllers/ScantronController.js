@@ -1,15 +1,13 @@
 import mongoose from 'mongoose'
 import {ScantronSchema} from '../models/ScantronSchema'
 const Scantron = mongoose.model('Scantron', ScantronSchema)
+const fs = require('fs')
+
+let counter = 0
 
 export const addNewScantron = (req, res) => {
-    let newScantron = new Scantron(req.body)
-    newScantron.save((err, Scantron) => {
-        if (err) {
-            res.send(err)
-        }
-        res.json(Scantron)
-    })
+    counter++
+    fs.writeFile(`/Users/jakobbellamy/Development/OpenTron/Backend/images/img_${counter}`, new Buffer(req.body.img, "base64"), function(err) {res.send(err)})
 }
 
 export const getScantrons = (req, res) => {
