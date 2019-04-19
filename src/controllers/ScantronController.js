@@ -10,6 +10,14 @@ export const addNewScantron = (req, res) => {
     let student = req.body.student
     let test = req.body.test
     fs.writeFile(`/Users/jakobbellamy/Development/OpenTron/Backend/RAWSCANS/${test}_SCAN_${counter}.png`, new Buffer(req.body.img, "base64"), function(err) {res.send(err)})
+    
+    let newScantron = new Scantron(res.body)
+    newScantron.save((err, scantron) => {
+        if (err){
+            res.send(err)
+        }
+        res.json(scantron)
+    })
 }
 
 export const getScantrons = (req, res) => {
